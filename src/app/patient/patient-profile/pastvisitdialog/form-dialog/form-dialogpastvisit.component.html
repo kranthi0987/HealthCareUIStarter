@@ -1,0 +1,129 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 p-l-10 font-17">
+                        {{dialogTitle}}</div>
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="patientForm" (ngSubmit)="submit">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Counselled ON</mat-label>
+                        <input matInput formControlName="consulted_on" required>
+                        <mat-icon matSuffix>face</mat-icon>
+                        <mat-error *ngIf="patientForm.get('consulted_on').hasError('required')">
+                          consulted_on is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Treatment</mat-label>
+                        <input matInput formControlName="treatment">
+                        <mat-icon matSuffix>treatment</mat-icon>
+                        <mat-error *ngIf="patientForm.get('treatment').hasError('required')">
+                          treatment is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="m-b-20">
+                        <mat-label class="mr-3">Log Documents</mat-label>
+                      <div class="modalHeader clearfix">
+                        <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+<!--                    <mat-form-field class="example-full-width" appearance="outline">-->
+                        <mat-label>session logs</mat-label>
+                      <mat-video title="My Tutorial Title" [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="true"  color="accent" spinner="spin" poster="image.jpg">
+                        <source matVideoSource #video class="video" [srcset]="" type="video/webm">
+<!--                        <source #video class="video"  >-->
+<!--                        <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">-->
+<!--                        <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">-->
+                      </mat-video>
+<!--                  <mat-video #video src="localOrRemoteVideo.mp4"></mat-video>-->
+                  <div class="row">
+                    <div class="align-content-center">
+                      <button  color="primary" (click)="startRecording()"> Record </button>
+                      <button  color="primary" (click) ="stopRecording()"> Stop</button>
+                      <button  color="primary" (click)="download()"> Download</button>
+                    </div>
+                  </div>
+<!--                    </mat-form-field>-->
+                </div>
+            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+<!--                    <mat-form-field class="example-full-width" appearance="outline">-->
+<!--                        <mat-label>Birth date</mat-label>-->
+<!--                        <input matInput [matDatepicker]="picker" formControlName="date">-->
+<!--                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--                        <mat-datepicker #picker></mat-datepicker>-->
+<!--                        <mat-error *ngIf="patientForm.get('date').hasError('required')">-->
+<!--                            Please select date-->
+<!--                        </mat-error>-->
+<!--                    </mat-form-field>-->
+<!--                </div>-->
+<!--                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+<!--                    <mat-form-field class="example-full-width " appearance="outline">-->
+<!--                        <mat-label>Blood Group</mat-label>-->
+<!--                        <mat-select formControlName="bGroup" required>-->
+<!--                            <mat-option [value]="'A+'">-->
+<!--                                A+-->
+<!--                            </mat-option>-->
+<!--                            <mat-option [value]="'B+'">-->
+<!--                                B+-->
+<!--                            </mat-option>-->
+<!--                            <mat-option [value]="'O+'">-->
+<!--                                O+-->
+<!--                            </mat-option>-->
+<!--                            <mat-option [value]="'AB+'">-->
+<!--                                AB+-->
+<!--                            </mat-option>-->
+<!--                        </mat-select>-->
+<!--                        <mat-error *ngIf="patientForm.get('bGroup').hasError('required')">-->
+<!--                            Blood Group is required-->
+<!--                        </mat-error>-->
+<!--                    </mat-form-field>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+<!--                    <mat-form-field class="example-full-width" appearance="outline">-->
+<!--                        <mat-label>Treatment</mat-label>-->
+<!--                        <input matInput formControlName="treatment" required>-->
+<!--                        <mat-icon matSuffix>healing</mat-icon>-->
+<!--                        <mat-error *ngIf="patientForm.get('treatment').hasError('required')">-->
+<!--                            Treatment is required-->
+<!--                        </mat-error>-->
+<!--                    </mat-form-field>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">-->
+<!--                    <div class="example-button-row">-->
+<!--                        <button mat-raised-button color="primary" [type]="submit" [disabled]="!patientForm.valid"-->
+<!--                            [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>-->
+<!--                        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </form>
+    </div>
+</div>
