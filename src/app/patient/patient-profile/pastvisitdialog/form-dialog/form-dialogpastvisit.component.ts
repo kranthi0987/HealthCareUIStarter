@@ -1,5 +1,5 @@
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {AfterViewInit, Component, Inject, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import {
   FormControl,
@@ -24,8 +24,8 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
 
   private stream: MediaStream;
   private recordRTC: any;
-  @ViewChild('video', { static: false }) matVideo: any;
-  video: HTMLVideoElement;
+  // @ViewChild('video', {static: false}) matVideo: any;
+  @ViewChild('video') matVideo: ElementRef<HTMLVideoElement>;
 
   constructor(
     public dialogRef: MatDialogRef<FormDialogPastVisitComponent>,
@@ -37,7 +37,7 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
     // Set the defaults
     this.action = data.action;
     if (this.action === 'view') {
-      this.dialogTitle = data.patient.name;
+      this.dialogTitle = "View Visit";
       this.patient = data.patient;
     } else {
       this.dialogTitle = 'New Visit';
@@ -87,24 +87,25 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
 
   ngAfterViewInit(): void {
     // set the initial state of the video
-    // const video: HTMLVideoElement = this.video.nativeElement;
-    this.matVideo.muted = false;
-    this.matVideo.controls = true;
-    this.matVideo.autoplay = false;
+    // const matVideo: HTMLVideoElement = this.matVideo.nativeElement;
+    this.matVideo.nativeElement.muted = false;
+    this.matVideo.nativeElement.controls = true;
+    this.matVideo.nativeElement.autoplay = false;
 
   }
 
   toggleControls() {
     // const video: HTMLVideoElement = this.video.nativeElement;
-    this.matVideo.muted = !this.matVideo.muted;
-    this.matVideo.controls = !this.matVideo.controls;
-    this.matVideo.autoplay = !this.matVideo.autoplay;
+    this.matVideo.nativeElement.muted = !this.matVideo.nativeElement.muted;
+    this.matVideo.nativeElement.controls = !this.matVideo.nativeElement.controls;
+    this.matVideo.nativeElement.autoplay = !this.matVideo.nativeElement.autoplay;
   }
 
   successCallback(stream: MediaStream) {
 
     const options = {
-      mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+      type: 'video',
+      mimeType: 'video/webm;codecs=h264', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
       audioBitsPerSecond: 128000,
       videoBitsPerSecond: 128000,
       bitsPerSecond: 128000 // if this line is provided, skip above two
@@ -113,7 +114,7 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
     this.recordRTC = RecordRTC(stream, options);
     this.recordRTC.startRecording();
     // const video: HTMLVideoElement = this.video.nativeElement;
-    this.matVideo.srcObject = stream;
+    this.matVideo.nativeElement.srcObject = stream;
     this.toggleControls();
   }
 
@@ -124,10 +125,18 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
   processVideo(audioVideoWebMURL) {
     // const video: HTMLVideoElement = this.video.nativeElement;
     const recordRTC = this.recordRTC;
-    this.matVideo.srcset = audioVideoWebMURL;
+    // this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
+    try {
+      this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
+    } catch (error) {
+      console.log(error);
+      this.matVideo.nativeElement.src = audioVideoWebMURL;
+    }
+    console.log(audioVideoWebMURL);
     this.toggleControls();
     const recordedBlob = recordRTC.getBlob();
     recordRTC.getDataURL(function(dataURL) {
+      // console.log(dataURL);
     });
   }
 
@@ -164,8 +173,8 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.matVideo.srcset) {
-      this.matVideo.load();
-    }
+    // if (this.matVideo.src) {
+    //   this.matVideo.load();
+    // }
   }
 }
