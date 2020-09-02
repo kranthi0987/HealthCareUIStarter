@@ -42,7 +42,21 @@
           <div class="m-b-20">
             <mat-label class="mr-3">Log Documents</mat-label>
             <div class="modalHeader clearfix">
-              <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">
+              <div *ngIf='patient.log_documents===""; then thenBlock else elseBlock'> </div>
+              <ng-template #thenBlock>
+                <mat-form-field class="example-full-width mb-3" appearance="outline" [hidden]="false">
+                  <mat-label>Upload Image</mat-label>
+                  <ngx-mat-file-input formControlName="uploadImg">
+                  </ngx-mat-file-input>
+                  <mat-icon matSuffix>face</mat-icon>
+                </mat-form-field>
+              </ng-template>
+              <ng-template #elseBlock>
+                <div class="align-center" [hidden]="true" >
+                  <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">
+                </div>
+              </ng-template>
+
             </div>
           </div>
         </div>
@@ -64,21 +78,21 @@
           <!--                      </mat-video>-->
           <!--                  <mat-video #video src="localOrRemoteVideo.mp4"></mat-video>-->
 
-          <div *ngIf='patient.session_log===""; then thenBlock else elseBlock'> </div>
-          <ng-template #thenBlock>
+<!--          <div *ngIf='patient.session_log===""; then thenBlock else elseBlock'> </div>-->
+<!--          <ng-template #thenBlock>-->
+<!--            <div class="align-center" [hidden]="false">-->
+<!--              <button mat-stroked-button color="primary" (click)="startRecording()"> Record </button>-->
+<!--              <button mat-stroked-button color="warn" (click)="stopRecording()"> Stop</button>-->
+<!--              <button mat-stroked-button color="accent" (click)="download()"> Download</button>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--          <ng-template #elseBlock>-->
             <div class="align-center" [hidden]="false">
-              <button mat-stroked-button color="primary" (click)="startRecording()"> Record </button>
+              <button mat-stroked-button color="primary" (click)="startStreamRecording()"> Record </button>
               <button mat-stroked-button color="warn" (click)="stopRecording()"> Stop</button>
               <button mat-stroked-button color="accent" (click)="download()"> Download</button>
             </div>
-          </ng-template>
-          <ng-template #elseBlock>
-            <div class="align-center" [hidden]="true">
-              <button mat-stroked-button color="primary" (click)="startRecording()"> Record </button>
-              <button mat-stroked-button color="warn" (click)="stopRecording()"> Stop</button>
-              <button mat-stroked-button color="accent" (click)="download()"> Download</button>
-            </div>
-          </ng-template>
+<!--          </ng-template>-->
           <!--                    </mat-form-field>-->
         </div>
       </div>

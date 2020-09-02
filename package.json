@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node custom-webpack.config.js"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,8 @@
     "browser-sync": "^2.26.7",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
+    "fs": "0.0.1-security",
+    "fs-extra": "^9.0.1",
     "jquery": "^3.5.1",
     "jquery-sparkline": "^2.4.0",
     "mat-progress-buttons": "^9.1.1",
@@ -64,17 +67,22 @@
     "ngx-material-file-input": "^2.1.1",
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-spinner": "^9.0.2",
+    "node-onvif": "^0.1.7",
     "node-sass": "^4.14.1",
     "node-waves": "^0.7.6",
     "owl.carousel": "^2.3.4",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "randomstring": "^1.1.5",
     "raphael": "^2.3.0",
     "recordrtc": "^5.6.1",
+    "rtsp-video-recorder": "^1.2.0-alpha.4",
     "rxjs": "^6.5.5",
     "simple-line-icons": "^2.4.1",
+    "stream": "0.0.2",
     "sweetalert2": "^9.15.0",
     "tslib": "^2.0.0",
+    "webpack": "^4.44.1",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
@@ -103,6 +111,7 @@
     "run-sequence": "^2.2.1",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "rtsp-video-recorder": "^1.2.0-alpha.4"
   }
 }

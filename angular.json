@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/light",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,6 +55,7 @@
               "./node_modules/raphael/raphael.min.js",
               "./node_modules/chart.js/dist/Chart.bundle.js",
               "./node_modules/apexcharts/dist/apexcharts.min.js"
+
             ]
           },
           "configurations": {
@@ -66,13 +68,15 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "crossOrigin": "anonymous",
+              "allowedCommonJsDependencies": ["rtsp-video-recorder"]
             }
           }
         },

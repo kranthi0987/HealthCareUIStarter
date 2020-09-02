@@ -8,25 +8,29 @@ import {
   FormBuilder
 } from '@angular/forms';
 import {PatientService} from "../../../allpatient/patient.service";
-import {Patient} from "../../../allpatient/patient.model";
 import {PastVisitModel} from "../../../models/PastVisitModel";
-
+// const Stream = require('videoStream');
+// import Recorder, { RecorderEvents } from "rtsp-video-recorder";
+import * as assert from "assert";
+import Recorder, {RecorderEvents} from "rtsp-video-recorder";
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialogpastvisit.component.html',
   styleUrls: ['./form-dialogpastvisit.component.sass']
 })
+
 export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnChanges {
   action: string;
   dialogTitle: string;
   patientForm: FormGroup;
   patient: PastVisitModel;
+  rec: any;
 
   private stream: MediaStream;
-  private recordRTC: any;
-  // @ViewChild('video', {static: false}) matVideo: any;
-  @ViewChild('video') matVideo: ElementRef<HTMLVideoElement>;
 
+  public recorder: any;
+  // @ViewChild('video', {static: false}) matVideo: any;
+  @ViewChild('video', { static: false }) matVideo: ElementRef<HTMLVideoElement>;
   constructor(
     public dialogRef: MatDialogRef<FormDialogPastVisitComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -44,6 +48,17 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
       this.patient = new PastVisitModel({});
     }
     this.patientForm = this.createContactForm();
+    this.recorder = new Recorder('rtsp://169.254.87.20:554/profile1', '/media/Recorder', {
+      title: 'Test Camera',
+    });
+    // this.rec = new Recorder({
+    //   url: 'rtsp://' + this.ip_address + ':554/profile1',
+    //   timeLimit: 60, // time in seconds for each segmented video file
+    //   folder: 'C:\\Workspace\\webstormprojects\\streaming',
+    //   name: 'cam1',
+    //   // type:"image"
+    //   // ffmpeg -i rtsp://169.254.87.20/profile1 -c:a aac -vcodec copy C:\Workspace\webstormprojects\streaming\1.mp4
+    // });
   }
 
   formControl = new FormControl('', [
@@ -111,8 +126,8 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
       bitsPerSecond: 128000 // if this line is provided, skip above two
     };
     this.stream = stream;
-    this.recordRTC = RecordRTC(stream, options);
-    this.recordRTC.startRecording();
+    // this.recordRTC = RecordRTC(stream, options);
+    // this.recordRTC.startRecording();
     // const video: HTMLVideoElement = this.video.nativeElement;
     this.matVideo.nativeElement.srcObject = stream;
     this.toggleControls();
@@ -123,21 +138,21 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
   }
 
   processVideo(audioVideoWebMURL) {
-    // const video: HTMLVideoElement = this.video.nativeElement;
-    const recordRTC = this.recordRTC;
-    // this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
-    try {
-      this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
-    } catch (error) {
-      console.log(error);
-      this.matVideo.nativeElement.src = audioVideoWebMURL;
-    }
-    console.log(audioVideoWebMURL);
-    this.toggleControls();
-    const recordedBlob = recordRTC.getBlob();
-    recordRTC.getDataURL(function(dataURL) {
-      // console.log(dataURL);
-    });
+    // // const video: HTMLVideoElement = this.video.nativeElement;
+    // const recordRTC = this.recordRTC;
+    // // this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
+    // try {
+    //   this.matVideo.nativeElement.srcObject = audioVideoWebMURL;
+    // } catch (error) {
+    //   console.log(error);
+    //   this.matVideo.nativeElement.src = audioVideoWebMURL;
+    // }
+    // console.log(audioVideoWebMURL);
+    // this.toggleControls();
+    // const recordedBlob = recordRTC.getBlob();
+    // recordRTC.getDataURL(function(dataURL) {
+    //   // console.log(dataURL);
+    // });
   }
 
   startRecording() {
@@ -151,16 +166,36 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
 
   }
 
+
+  startStreamRecording(){
+    // this.recorder.on(RecorderEvents.STARTED, (payload) => {
+    //   assert.equal(payload, {
+    //     uri: 'rtsp://username:password@host/path',
+    //     path: '/media/Recorder',
+    //     title: 'Test Camera',
+    //     directoryPattern: '%Y.%m.%d',
+    //     filenamePattern: '%H.%M.%S',
+    //     segmentTime: 600,
+    //     autoClear: false,
+    //     ffmpegBinary: 'ffmpeg',
+    //   });
+    // });
+  }
+
+  stopStreamRecording(){
+    // this.recorder.stopRecording();
+  }
+
   stopRecording() {
-    const recordRTC = this.recordRTC;
-    recordRTC.stopRecording(this.processVideo.bind(this));
-    const stream = this.stream;
-    stream.getAudioTracks().forEach(track => track.stop());
-    stream.getVideoTracks().forEach(track => track.stop());
+    // const recordRTC = this.recordRTC;
+    // recordRTC.stopRecording(this.processVideo.bind(this));
+    // const stream = this.stream;
+    // stream.getAudioTracks().forEach(track => track.stop());
+    // stream.getVideoTracks().forEach(track => track.stop());
   }
 
   download() {
-    this.recordRTC.save('video.webm');
+    // this.recordRTC.save('video.webm');
   }
 
   ngOnInit(): void {
