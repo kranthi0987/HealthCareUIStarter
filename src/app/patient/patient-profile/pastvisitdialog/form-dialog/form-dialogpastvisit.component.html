@@ -16,15 +16,25 @@
   <div mat-dialog-content>
     <form class="register-form m-4" [formGroup]="patientForm" (ngSubmit)="submit">
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Counselled ON</mat-label>
-            <input matInput formControlName="consulted_on" required>
-            <mat-icon matSuffix>face</mat-icon>
-            <mat-error *ngIf="patientForm.get('consulted_on').hasError('required')">
-              Consulted On is required
-            </mat-error>
-          </mat-form-field>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Counselled ON</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="consulted_on" required >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="patientForm.get('consulted_on').hasError('required')">
+                Please select  Consulted On
+              </mat-error>
+            </mat-form-field>
+<!--        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">-->
+<!--          <mat-form-field class="example-full-width" appearance="outline">-->
+<!--            <mat-label>Counselled ON</mat-label>-->
+<!--            <input matInput formControlName="consulted_on" required>-->
+<!--            <mat-icon matSuffix>face</mat-icon>-->
+<!--            <mat-error *ngIf="patientForm.get('consulted_on').hasError('required')">-->
+<!--              Consulted On is required-->
+<!--            </mat-error>-->
+<!--          </mat-form-field>-->
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">

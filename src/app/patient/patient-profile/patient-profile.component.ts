@@ -79,6 +79,11 @@ export class PatientProfileComponent implements OnInit {
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
+  public getAge(date: any): string {
+    const timeDiff = Math.abs(Date.now() - new Date(date).getTime());
+    const age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+    return age.toString();
+  }
 
   public addNewVisit() {
     const dialogRef = this.dialog.open(FormDialogPastVisitComponent, {

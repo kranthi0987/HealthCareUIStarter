@@ -1,20 +1,12 @@
 import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
   {
-    path: '',
-    title: 'Home',
+    title: 'Dashboard',
     icon: 'fas fa-home',
-    class: 'menu-toggle',
+    class: 'ml-menu',
     groupTitle: false,
+    path: '/dashboard/main',
     submenu: [
-      {
-        path: '/dashboard/main',
-        title: 'Dashboard 1',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      }
     ]
   },
 
@@ -93,88 +85,88 @@ export const ROUTES: RouteInfo[] = [
   //     }
   //   ]
   // },
-  {
-    path: '',
-    title: 'Doctors',
-    icon: 'fas fa-user-md',
-    class: 'menu-toggle',
-    groupTitle: false,
-    submenu: [
-      {
-        path: '/doctors/allDoctors',
-        title: 'All Doctor',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/doctors/add-doctor',
-        title: 'Add Doctor',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/doctors/edit-doctor',
-        title: 'Edit Doctor',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/doctors/doctor-profile',
-        title: 'Doctor Profile',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      }
-    ]
-  },
-  {
-    path: '',
-    title: 'Staff',
-    icon: 'fas fa-user-friends',
-    class: 'menu-toggle',
-    groupTitle: false,
-    submenu: [
-      {
-        path: '/staff/all-staff',
-        title: 'All Staff',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/staff/add-staff',
-        title: 'Add Staff',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/staff/edit-staff',
-        title: 'Edit Staff',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/staff/staff-profile',
-        title: 'Staff Profile',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      }
-    ]
-  },
+  // {
+  //   path: '',
+  //   title: 'Doctors',
+  //   icon: 'fas fa-user-md',
+  //   class: 'menu-toggle',
+  //   groupTitle: false,
+  //   submenu: [
+  //     {
+  //       path: '/doctors/allDoctors',
+  //       title: 'All Doctor',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/doctors/add-doctor',
+  //       title: 'Add Doctor',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/doctors/edit-doctor',
+  //       title: 'Edit Doctor',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/doctors/doctor-profile',
+  //       title: 'Doctor Profile',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '',
+  //   title: 'Staff',
+  //   icon: 'fas fa-user-friends',
+  //   class: 'menu-toggle',
+  //   groupTitle: false,
+  //   submenu: [
+  //     {
+  //       path: '/staff/all-staff',
+  //       title: 'All Staff',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/staff/add-staff',
+  //       title: 'Add Staff',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/staff/edit-staff',
+  //       title: 'Edit Staff',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     },
+  //     {
+  //       path: '/staff/staff-profile',
+  //       title: 'Staff Profile',
+  //       icon: '',
+  //       class: 'ml-menu',
+  //       groupTitle: false,
+  //       submenu: []
+  //     }
+  //   ]
+  // },
   {
     path: '',
     title: 'Patient',
@@ -198,22 +190,22 @@ export const ROUTES: RouteInfo[] = [
         groupTitle: false,
         submenu: []
       },
-      {
-        path: '/patient/edit-patient',
-        title: 'Edit Patient',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/patient/patient-profile',
-        title: 'Patient Profile',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      }
+      // {
+      //   path: '/patient/edit-patient',
+      //   title: 'Edit Patient',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   submenu: []
+      // },
+      // {
+      //   path: '/patient/patient-profile',
+      //   title: 'Patient Profile',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   submenu: []
+      // }
     ]
   },
 ];

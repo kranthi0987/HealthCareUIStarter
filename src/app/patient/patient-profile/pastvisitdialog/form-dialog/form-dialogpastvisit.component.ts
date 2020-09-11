@@ -12,7 +12,7 @@ import {PastVisitModel} from "../../../models/PastVisitModel";
 // const Stream = require('videoStream');
 // import Recorder, { RecorderEvents } from "rtsp-video-recorder";
 import * as assert from "assert";
-import Recorder, {RecorderEvents} from "rtsp-video-recorder";
+// import Recorder, {RecorderEvents} from "rtsp-video-recorder";
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialogpastvisit.component.html',
@@ -48,17 +48,6 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
       this.patient = new PastVisitModel({});
     }
     this.patientForm = this.createContactForm();
-    this.recorder = new Recorder('rtsp://169.254.87.20:554/profile1', '/media/Recorder', {
-      title: 'Test Camera',
-    });
-    // this.rec = new Recorder({
-    //   url: 'rtsp://' + this.ip_address + ':554/profile1',
-    //   timeLimit: 60, // time in seconds for each segmented video file
-    //   folder: 'C:\\Workspace\\webstormprojects\\streaming',
-    //   name: 'cam1',
-    //   // type:"image"
-    //   // ffmpeg -i rtsp://169.254.87.20/profile1 -c:a aac -vcodec copy C:\Workspace\webstormprojects\streaming\1.mp4
-    // });
   }
 
   formControl = new FormControl('', [
@@ -90,6 +79,7 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit, OnCh
 
   submit() {
     // emppty stuff
+    this.dialogRef.close();
   }
 
   onNoClick(): void {

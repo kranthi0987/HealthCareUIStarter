@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
   listMaxHeight: string;
   listMaxWidth: string;
   headerHeight = 60;
-  full_name: string;
+  fullName: string;
   specialist: string;
 
   constructor(
@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit {
     private renderer: Renderer2,
     public elementRef: ElementRef
   ) {
-    this.full_name = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
+    this.fullName = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
     this.specialist = localStorage.getItem('specialist');
   }
 

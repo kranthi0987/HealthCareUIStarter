@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PatientService} from "../allpatient/patient.service";
 import {LoginResponse} from "../../authentication/shared/loginResponse.model";
 import {Router} from "@angular/router";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-add-patient',
@@ -12,6 +13,8 @@ import {Router} from "@angular/router";
 export class AddPatientComponent {
   patientForm: FormGroup;
   codeGenerated: string; // for 7 digit code
+  events: string[] = [];
+
   constructor(public patientservice: PatientService,
               private router: Router,
               private fb: FormBuilder) {
@@ -33,9 +36,23 @@ export class AddPatientComponent {
       bPresure: [''],
       sugger: [''],
       injury: [''],
-      uploadImg: ['']
+      uploadImg: [''],
+      aadhar_no: ['', [Validators.required, Validators.pattern('[\\d{4}\\s\\d{4}\\s\\d{4}$]+')]]
     });
+    this.patientForm.get("age").disable();
   }
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${type}: ${event.value}`);
+    console.log(`${type}: ${event.value}`);
+    console.log(this.patientForm.get("dob").value);
+    const timeDiff = Math.abs(Date.now() - new Date(event.value).getTime());
+    const age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+    console.log(age);
+    this.patientForm.get("age").setValue(age.toString() + ' Years');
+
+  }
+
 
   randomString() {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
@@ -65,7 +82,6 @@ export class AddPatientComponent {
     formData.append("gender", this.patientForm.get('gender').value);
     formData.append("mobile", this.patientForm.get('mobile').value);
     formData.append("dob", this.patientForm.get('dob').value);
-    formData.append("age", this.patientForm.get('age').value);
     formData.append("email", this.patientForm.get('email').value);
     formData.append("marital_status", this.patientForm.get('maritalStatus').value);
     formData.append("address", this.patientForm.get('address').value);
@@ -73,7 +89,8 @@ export class AddPatientComponent {
     formData.append("bpresure", this.patientForm.get('bPresure').value);
     formData.append("sugger", this.patientForm.get('sugger').value);
     formData.append("injury", this.patientForm.get('injury').value);
-    formData.append("img", this.patientForm.get('uploadImg').value);
+    formData.append("profile_image", this.patientForm.get('uploadImg').value);
+    formData.append("aadhar_no", this.patientForm.get('aadhar_no').value);
     formData.append("doc_id", localStorage.getItem("doc_id"));
 
     const patientObservable = this.patientservice.addPatient(formData);

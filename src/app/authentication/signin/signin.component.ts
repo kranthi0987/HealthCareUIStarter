@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginResponse} from "../shared/loginResponse.model";
 import {AuthService} from "../shared/auth.service";
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ForgetPasswordDialogComponent} from "./forgetpassworddialog.component";
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -12,6 +14,7 @@ export class SigninComponent implements OnInit {
   loginForm: FormGroup;
   // sanjay added
   loginReponse: LoginResponse;
+  simpleDialog: MatDialogRef<ForgetPasswordDialogComponent>;
   @Input() loginRequest = {email: '', password: ''};
   submitted = false;
   returnUrl: string;
@@ -20,7 +23,8 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog,
   ) {}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -48,6 +52,9 @@ export class SigninComponent implements OnInit {
       }
     );
 
+  }
+  onForgetPasswordClick() {
+    this.simpleDialog = this.dialog.open(ForgetPasswordDialogComponent);
   }
 
   onSubmit() {

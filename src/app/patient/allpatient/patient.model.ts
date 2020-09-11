@@ -1,30 +1,36 @@
 export class Patient {
   id: number;
-  img: string;
-  name: string;
+  profile_image: string;
+  first_name: string;
   gender: string;
   bGroup: string;
-  date: string;
+  dob: string;
   address: string;
   mobile: string;
   treatment: string;
+  patient_op: string;
+
   constructor(patient) {
     {
       this.id = patient.id || this.getRandomID();
-      this.img = patient.avatar || 'assets/images/user/user1.jpg';
-      this.name = patient.name || '';
+      this.profile_image = patient.profile_image || 'assets/images/user/user1.jpg';
+      this.first_name = patient.first_name || '';
       this.gender = patient.gender || 'male';
       this.bGroup = patient.email || '';
-      this.date = patient.date || '';
+      this.dob = patient.dob || '';
       this.address = patient.address || '';
       this.mobile = patient.mobile || '';
       this.treatment = patient.treatment || '';
+      this.patient_op = patient.patient_op || '';
     }
   }
+
   public getRandomID(): string {
     var S4 = function() {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
     return S4() + S4();
   }
+
+
 }

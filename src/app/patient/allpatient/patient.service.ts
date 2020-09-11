@@ -62,8 +62,13 @@ export class PatientService {
   deletePatient(id: number): void {
     console.log(id);
   }
-
-  // Add patient form data from add patinet
+  // delete patient with id
+  public deletePatientbyid(id: number): Observable<any>{
+    return this.httpClient.delete('api/patient/' + id, this.httpAuthFormData)
+      .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
+        catchError(this.handleError));
+  }
+  // Add patient form data from add patient
   public addPatient(formData): Observable<any> {
     return this.httpClient.post('/api/patient/list/', formData, this.httpAuthFormData)
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),

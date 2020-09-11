@@ -6,7 +6,7 @@
             <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
             <a class="navbar-brand" routerLink="dashboard/main">
                 <img src="assets/images/logo.png" alt="" />
-                <span class="logo-name">Cliniva</span>
+                <span class="logo-name">Totalog</span>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -25,39 +25,7 @@
                     </button>
                 </li>
                 <!-- #END# Full Screen Button -->
-                <!-- #START# Notifications-->
-                <li class="dropdown">
-                    <button mat-icon-button data-toggle="dropdown" class=" nav-notification-icons">
-                        <mat-icon>notifications_none</mat-icon>
-                        <span class="label-count bg-orange"></span>
-                    </button>
-                    <ul class="dropdown-menu pullDown">
-                        <li class="header">NOTIFICATIONS</li>
-                        <li class="body">
-                            <ul class="menu" style="position: relative; max-width: 600px; max-height: 200px;"
-                                [perfectScrollbar]>
-                                <li>
-                                    <a href="#" *ngFor="let notification of notifications" onClick="return false;">
-                                        <span class="table-img msg-user">
-                                            <img src="{{notification.userImg}}" alt="">
-                                        </span>
-                                        <span class="menu-info">
-                                            <span class="menu-title">{{notification.userName}}</span>
-                                            <span class="menu-desc">
-                                                <i class="material-icons">access_time</i> {{notification.time}}
-                                            </span>
-                                            <span class="menu-desc">{{notification.message}}</span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#" onClick="return false;">View All Notifications</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- #END# Notifications-->
+
                 <li class="dropdown user_profile">
                     <a href="#" onClick="return false;" data-toggle="dropdown" role="button" class="pt-0">
                         <img src="assets/images/user.jpg" class="rounded-circle" width="32" height="32" alt="User">
@@ -90,12 +58,7 @@
                     </ul>
                 </li>
                 <!-- #END# Tasks -->
-                <li class="pull-right">
-                    <button mat-icon-button (click)="toggleRightSidebar()"
-                        class="nav-notification-icons js-right-sidebar">
-                        <mat-icon id="settingBtn">settings</mat-icon>
-                    </button>
-                </li>
+
             </ul>
         </div>
     </div>

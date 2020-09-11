@@ -26,6 +26,7 @@ export class FormDialogComponent {
   ) {
     // Set the defaults
     this.action = data.action;
+    console.log(data.patient);
     if (this.action === 'edit') {
       this.dialogTitle = data.patient.name;
       this.patient = data.patient;
@@ -49,10 +50,10 @@ export class FormDialogComponent {
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.patient.id],
-      img: [this.patient.img],
-      name: [this.patient.name],
+      profile_image: [this.patient.profile_image],
+      name: [this.patient.first_name],
       gender: [this.patient.gender],
-      date: [this.patient.date],
+      dob: [this.patient.dob],
       bGroup: [this.patient.bGroup],
       mobile: [this.patient.mobile],
       address: [this.patient.address],

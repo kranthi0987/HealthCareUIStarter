@@ -2,7 +2,7 @@
     <div class="modalHeader">
         <div class="editRowModal">
             <div class="modalHeader clearfix">
-                <img [src]='patient.img' alt="avatar" height="200px" width="200px">
+                <img [src]='patient.profile_image' alt="avatar" height="200px" width="200px">
                 <div class="modal-about">
                     <div class="font-weight-bold p-t-5 p-l-10 font-17">
                         {{dialogTitle}}</div>
@@ -63,10 +63,10 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Birth date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="date">
+                        <input matInput [matDatepicker]="picker" formControlName="dob">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="patientForm.get('date').hasError('required')">
+                        <mat-error *ngIf="patientForm.get('dob').hasError('required')">
                             Please select date
                         </mat-error>
                     </mat-form-field>

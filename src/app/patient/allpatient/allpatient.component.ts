@@ -29,8 +29,6 @@ export class AllpatientComponent implements OnInit {
     'address',
     'mobile',
     'date',
-    'bGroup',
-    'treatment',
     'actions',
   ];
   exampleDatabase: PatientService | null;
@@ -122,6 +120,7 @@ export class AllpatientComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: row,
     });
+    console.log(row);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
@@ -143,7 +142,7 @@ export class AllpatientComponent implements OnInit {
   public viewPatient(i: any, row: any) {
     console.log(i);
     console.log(row);
-    this.router.navigate(['/patient/patient-profile/', row.id] );
+    this.router.navigate(['/patient/patient-profile/', row.id]);
   }
 
   private refreshTable() {
@@ -211,6 +210,11 @@ export class AllpatientComponent implements OnInit {
       panelClass: colorName,
     });
   }
+  public getAge(date: any): string {
+    const timeDiff = Math.abs(Date.now() - new Date(date).getTime());
+    const age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+    return age.toString();
+  }
 }
 
 export class ExampleDataSource extends DataSource<Patient> {
@@ -254,13 +258,14 @@ export class ExampleDataSource extends DataSource<Patient> {
           .slice()
           .filter((patient: Patient) => {
             const searchStr = (
-              patient.name +
+              patient.first_name +
               patient.gender +
               patient.address +
-              patient.date +
+              patient.dob +
               patient.bGroup +
               patient.treatment +
-              patient.mobile
+              patient.mobile +
+              patient.patient_op
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -292,20 +297,23 @@ export class ExampleDataSource extends DataSource<Patient> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+        case 'first_name':
+          [propertyA, propertyB] = [a.first_name, b.first_name];
           break;
         case 'gender':
           [propertyA, propertyB] = [a.gender, b.gender];
           break;
-        case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
+        case 'dob':
+          [propertyA, propertyB] = [a.dob, b.dob];
           break;
         case 'address':
           [propertyA, propertyB] = [a.address, b.address];
           break;
         case 'mobile':
           [propertyA, propertyB] = [a.mobile, b.mobile];
+          break;
+        case 'patient_op':
+          [propertyA, propertyB] = [a.patient_op, b.patient_op];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

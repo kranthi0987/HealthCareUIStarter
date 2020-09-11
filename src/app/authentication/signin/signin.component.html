@@ -33,7 +33,7 @@
             </label>
           </div>
           <div>
-            <a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
+            <a class="txt1"  (click)="onForgetPasswordClick()">Forgot Password?</a>
           </div>
         </div>
         <div class="container-login100-form-btn">
@@ -41,21 +41,14 @@
             Login
           </button>
         </div>
-        <div class="text-center p-t-30 p-b-20">
-          <span class="txt3">
-            or <a routerLink="/authentication/signup">
-              sign up
-            </a> using
-          </span>
-        </div>
-        <div class="login100-form-social flex-c-m">
-          <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </div>
+<!--        <div class="text-center p-t-30 p-b-20">-->
+<!--          <span class="txt3">-->
+<!--            or <a routerLink="/authentication/signup">-->
+<!--              sign up-->
+<!--            </a> using-->
+<!--          </span>-->
+<!--        </div>-->
+
       </form>
       <div class="login100-more" style="background-image: url('assets/images/pages/bg-01.png');">
       </div>

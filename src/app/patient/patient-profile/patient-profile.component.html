@@ -23,7 +23,7 @@
       <div class="col-lg-4 col-md-12">
         <div class="card">
           <div class="contact-grid profile-image">
-            <img src="{{patient.img}}" alt="">
+            <img src="{{patient.profile_image}}" *ngIf="patient" alt="patient Profile image">
           </div>
         </div>
         <div class="card">
@@ -31,15 +31,24 @@
             <h2>About Patient</h2>
           </div>
           <div class="tab-pane body active" id="about">
-            <p class="text-default">{{patient.about_patient}}</p>
+            <p class="text-default" *ngIf="patient">{{patient.about_patient}} </p>
+            <small class="text-muted">Full Name: </small>
+            <p *ngIf="patient">{{patient.first_name + ' ' + patient.last_name}} </p>
+            <hr>
+            <small class="text-muted">Age: </small>
+            <p *ngIf="patient">{{getAge(patient.dob) }} </p>
+            <hr>
+            <small class="text-muted">Gender: </small>
+            <p *ngIf="patient">{{patient.gender}} </p>
+            <hr>
             <small class="text-muted">Email address: </small>
-            <p>{{patient.email}}</p>
+            <p *ngIf="patient">{{patient.email}} </p>
             <hr>
             <small class="text-muted">Phone: </small>
-            <p>{{patient.mobile}}</p>
+            <p *ngIf="patient">{{patient.mobile}} </p>
             <hr>
             <small class="text-muted">Address: </small>
-            <p>{{patient.address}}</p>
+            <p *ngIf="patient">{{patient.address}} </p>
             <hr>
           </div>
         </div>
@@ -53,7 +62,7 @@
                   <div class="header">
                     <h5>About</h5>
                   </div>
-                  <div class="body">
+                  <div class="body" *ngIf="patient">
                     {{patient.about}}
                     <br>
                   </div>
