@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {PatientService} from "../allpatient/patient.service";
+import {PatientService} from "../patient.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {PastVisitModel} from "../models/PastVisitModel";

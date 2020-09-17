@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {PatientService} from "../allpatient/patient.service";
+import {PatientService} from "../patient.service";
 import {LoginResponse} from "../../authentication/shared/loginResponse.model";
 import {Router} from "@angular/router";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";

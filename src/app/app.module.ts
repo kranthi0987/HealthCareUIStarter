@@ -38,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ClickOutsideModule } from 'ng-click-outside';
 import {DoctorsService} from "./doctors/alldoctors/doctors.service";
-import {PatientService} from "./patient/allpatient/patient.service";
+import {PatientService} from "./patient/patient.service";
 import {StaffService} from "./staff/allstaff/staff.service";
 import {AuthService} from "./authentication/shared/auth.service";
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {

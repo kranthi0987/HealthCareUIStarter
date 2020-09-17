@@ -14,10 +14,10 @@
     </button>
   </div>
   <div mat-dialog-content>
-    <form class="register-form m-4" [formGroup]="patientForm" (ngSubmit)="submit">
+    <form class="register-form m-6" [formGroup]="patientForm" (ngSubmit)="submit">
       <div class="row">
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-            <mat-form-field class="example-full-width mb-3" appearance="outline">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-4">
+            <mat-form-field appearance="outline">
               <mat-label>Counselled ON</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="consulted_on" required >
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -36,84 +36,73 @@
 <!--            </mat-error>-->
 <!--          </mat-form-field>-->
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-4">
+          <mat-form-field  appearance="outline">
             <mat-label>Treatment</mat-label>
             <input matInput formControlName="treatment" required>
-            <mat-icon matSuffix>treatment</mat-icon>
+            <mat-icon matSuffix>healing</mat-icon>
             <mat-error *ngIf="patientForm.get('treatment').hasError('required')">
               Treatment Is Required
             </mat-error>
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-          <div class="m-b-20">
-            <mat-label class="mr-3">Log Documents</mat-label>
-            <div class="modalHeader clearfix">
-              <div *ngIf='patient.log_documents===""; then thenBlock else elseBlock'> </div>
-              <ng-template #thenBlock>
-                <mat-form-field class="example-full-width mb-3" appearance="outline" [hidden]="false">
-                  <mat-label>Upload Image</mat-label>
-                  <ngx-mat-file-input formControlName="uploadImg">
-                  </ngx-mat-file-input>
-                  <mat-icon matSuffix>face</mat-icon>
-                </mat-form-field>
-              </ng-template>
-              <ng-template #elseBlock>
-                <div class="align-center" [hidden]="true" >
-                  <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">
-                </div>
-              </ng-template>
+<!--      <div class="row">-->
+<!--        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">-->
+<!--          <div class="m-b-20">-->
+<!--            <div *ngIf='patient.log_documents===""; then thenBlock else elseBlock'> </div>-->
+<!--            <mat-label class="mr-3">Log Documents</mat-label>-->
+<!--            <div class="modalHeader clearfix">-->
+<!--              <ng-template #thenBlock>-->
+<!--                <mat-form-field class="example-full-width mb-3" appearance="outline" [hidden]="false">-->
+<!--                  <mat-label>Upload Image</mat-label>-->
+<!--                  <ngx-mat-file-input formControlName="uploadImg">-->
+<!--                  </ngx-mat-file-input>-->
+<!--                  <mat-icon matSuffix>face</mat-icon>-->
+<!--                </mat-form-field>-->
+<!--              </ng-template>-->
+<!--              <ng-template #elseBlock>-->
+<!--                <div class="align-center" [hidden]="true" >-->
+<!--                  <img [src]='patient.log_documents' alt="avatar" height="200px" width="200px">-->
+<!--                </div>-->
+<!--              </ng-template>-->
 
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-          <!--                    <mat-form-field class="example-full-width" appearance="outline">-->
-          <mat-label>session logs</mat-label>
-
-          <span *ngIf='patient.session_log==null'> <video #video></video></span>
-          <span *ngIf='patient.session_log!=null'> <video #video [src]='patient.session_log'></video></span>
-
-          <!--                      <mat-video title="My Tutorial Title" [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="true"  color="accent" spinner="spin" poster="image.jpg">-->
-          <!--                      <mat-video title="My Tutorial Title" [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="true"  color="accent" >-->
-          <!--                        <source matVideoSource #video class="video" [srcset]="" type="video/webm">-->
-          <!--                        <source #video class="video"  >-->
-          <!--                        <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">-->
-          <!--                        <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">-->
-          <!--                      </mat-video>-->
-          <!--                  <mat-video #video src="localOrRemoteVideo.mp4"></mat-video>-->
-
-<!--          <div *ngIf='patient.session_log===""; then thenBlock else elseBlock'> </div>-->
-<!--          <ng-template #thenBlock>-->
-<!--            <div class="align-center" [hidden]="false">-->
-<!--              <button mat-stroked-button color="primary" (click)="startRecording()"> Record </button>-->
-<!--              <button mat-stroked-button color="warn" (click)="stopRecording()"> Stop</button>-->
-<!--              <button mat-stroked-button color="accent" (click)="download()"> Download</button>-->
 <!--            </div>-->
-<!--          </ng-template>-->
-<!--          <ng-template #elseBlock>-->
-            <div class="align-center" [hidden]="false">
-              <button mat-stroked-button color="primary" (click)="startStreamRecording()"> Record </button>
-              <button mat-stroked-button color="warn" (click)="stopRecording()"> Stop</button>
-              <button mat-stroked-button color="accent" (click)="download()"> Download</button>
-            </div>
-<!--          </ng-template>-->
-          <!--                    </mat-form-field>-->
-        </div>
-      </div>
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-          <div class="align-center">
-            <button mat-stroked-button color="primary" (click)="submit()" n> Submit</button>
-          </div>
-          <!--                    </mat-form-field>-->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+            <mat-form-field class="example-full-width mb-6" appearance="outline">
+              <mat-label>session logs</mat-label>
+              <!--          <span *ngIf='patient.session_log==null'> <video #video src="ws://127.0.0.1:9999"></video></span>-->
+              <!--          <span *ngIf='patient.session_log!=null'> <video #video [src]='patient.session_log'></video></span>-->
+              <canvas #video id="canvas"  ></canvas>
+              <input matInput formControlName="streamfilepath" disabled>
+            </mat-form-field>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+          <div class="align-center">
+              <button mat-stroked-button color="primary" (click)="startStreamRecording()"> Record </button>
+              <button mat-stroked-button color="warn" (click)="stopStreamRecording()"> Stop</button>
+              <button mat-stroked-button color="accent" (click)="download()"> Download</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+          <div class="align-center">
+            <button mat-stroked-button color="primary" (click)="submit()"> Submit</button>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>

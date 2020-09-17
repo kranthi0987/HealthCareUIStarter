@@ -1,9 +1,17 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "outDir": "../out-tsc/app",
     "types": [
       "node"
+    ],
+    "typeRoots": [
+      "node_modules/#types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
     ]
   },
   "exclude": [

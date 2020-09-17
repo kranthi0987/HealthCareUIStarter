@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {Patient} from './patient.model';
+import {Patient} from './allpatient/patient.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError, retry, shareReplay} from "rxjs/operators";
 
@@ -22,7 +22,7 @@ export class PatientService {
   // Http Options for post form data
   httpAuthFormData = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + this.token,
+      Authorization: 'Bearer ' + this.token,
     })
   };
 
@@ -30,7 +30,7 @@ export class PatientService {
   httpAuthGetJson = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token,
+      Authorization: 'Bearer ' + this.token,
     })
   };
 
@@ -82,6 +82,26 @@ export class PatientService {
         catchError(this.handleError));
   }
 
+  // start streaming for patient
+  public startStreaming(): Observable<any> {
+    return this.httpClient.get('/stream/startstreaming')
+      .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
+        catchError(this.handleError));
+  }
+  // stop streaming for patient
+  public stopStreaming(): Observable<any> {
+    return this.httpClient.get('/stream/stopstreaming')
+      .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
+        catchError(this.handleError));
+  }
+
+  // Download streaming for patient
+  public downloadStreaming(): Observable<Blob> {
+    return this.httpClient.get('/stream/download', { responseType: 'blob' })
+      .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
+        catchError(this.handleError));
+  }
+
   // get patient form data from add patinet
   public getPatientPastVisits(formData): Observable<any> {
     return this.httpClient.post('/api/patientlog/listbyid/', formData, this.httpAuthFormData)
@@ -90,7 +110,8 @@ export class PatientService {
   }
 
   // get patient form data from add patinet
-  public postPatientPastVisits(formData): Observable<any> {
+  public addPatientPastVisits(formData): Observable<any> {
+    console.log(formData);
     return this.httpClient.post('/api/patientlog/add/', formData, this.httpAuthFormData)
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
         catchError(this.handleError));

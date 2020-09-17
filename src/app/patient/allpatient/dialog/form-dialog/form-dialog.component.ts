@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { PatientService } from '../../patient.service';
+import { PatientService } from '../../../patient.service';
 import {
   FormControl,
   Validators,

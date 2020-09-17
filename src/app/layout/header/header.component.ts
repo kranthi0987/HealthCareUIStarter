@@ -10,9 +10,8 @@ import {
 import {RightSidebarService} from '../../shared/services/rightsidebar.service';
 import {ConfigService} from '../../shared/services/config.service';
 import {AuthService} from "../../authentication/shared/auth.service";
-import {LoginResponse} from "../../authentication/shared/loginResponse.model";
-import {ProfileModel} from "../../authentication/shared/profile.model";
 import {UserProfileModel} from "../../authentication/shared/userProfile.model";
+
 
 const document: any = window.document;
 

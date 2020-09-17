@@ -6,5 +6,9 @@
   "/media": {
     "target": "http://0.0.0.0:8000",
     "secured": false
+  },
+  "/stream": {
+    "target": "http://0.0.0.0:3000",
+    "secured": false
   }
 }

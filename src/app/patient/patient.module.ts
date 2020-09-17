@@ -27,7 +27,6 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DeleteDialogPastVisitComponent} from "./patient-profile/pastvisitdialog/delete/deletepastvisit.component";
 import {FormDialogPastVisitComponent} from "./patient-profile/pastvisitdialog/form-dialog/form-dialogpastvisit.component";
 import {MatVideoModule} from "mat-video";
-import { CameraComponent } from './camera/camera.component';
 @NgModule({
   declarations: [
     AllpatientComponent,
@@ -37,8 +36,7 @@ import { CameraComponent } from './camera/camera.component';
     EditPatientComponent,
     PatientProfileComponent,
     DeleteDialogPastVisitComponent,
-    FormDialogPastVisitComponent,
-    CameraComponent
+    FormDialogPastVisitComponent
   ],
   imports: [
     CommonModule,
