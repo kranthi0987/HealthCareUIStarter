@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
   headerHeight = 60;
   fullName: string;
   specialist: string;
+  pic: string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -35,6 +36,7 @@ export class SidebarComponent implements OnInit {
   ) {
     this.fullName = localStorage.getItem('first_name') + " " + localStorage.getItem('last_name');
     this.specialist = localStorage.getItem('specialist');
+    this.pic = localStorage.getItem('pic');
   }
 
   @HostListener('window:resize', ['$event'])

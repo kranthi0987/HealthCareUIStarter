@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    public elementRef: ElementRef,
     private dataService: RightSidebarService,
     private configService: ConfigService,
     private authService: AuthService
@@ -77,6 +76,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       message: 'kindly help me for code.'
     }
   ];
+  pic: string;
 
   ngOnInit() {
     this.config = this.configService.configData;
@@ -188,8 +188,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       localStorage.setItem('gender', profile.gender);
       localStorage.setItem('specialist', profile.specialist);
       localStorage.setItem('date_of_birth', profile.date_of_birth);
+      localStorage.setItem('wsport', profile.wsport);
+      localStorage.setItem('camera_ip_address', profile.camera_ip_address);
+      localStorage.setItem('pic', profile.pic);
+      localStorage.setItem('server_ip_address', profile.server_ip_address);
+
     }, (error) => {
     }, () => {
+    this.pic = localStorage.getItem('pic');
     });
   }
 }

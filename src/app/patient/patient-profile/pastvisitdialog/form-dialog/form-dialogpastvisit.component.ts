@@ -25,6 +25,7 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit {
   patientForm: FormGroup;
   patient: PastVisitModel;
   @ViewChild('video', {static: false}) streamingcanvas: ElementRef;
+  video: HTMLVideoElement;
 
   constructor(
     public dialogRef: MatDialogRef<FormDialogPastVisitComponent>,
@@ -79,12 +80,13 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit {
     // emppty stuff
     this.dialogRef.close();
     var streampath = this.patientForm.get('streamfilepath').value;
-    var splited = streampath.split("/");
+    var splited = streampath.split("\\");
     console.log(splited);
+    var streamfilepath = "http://" + localStorage.getItem('server_ip_address') + ":8000/" + splited[3] + "/" + splited[4] + "/" + splited[5] + "/" + splited[6] + "/" + splited[7] + "/" + splited[8];
     const formData: any = new FormData();
     formData.append("treatment", this.patientForm.get('treatment').value);
     formData.append("patient_id", this.data.patient.id);
-    formData.append("session_log", this.patientForm.get('streamfilepath').value);
+    formData.append("session_log", streamfilepath);
     const submitpastVisit = this.patientService.addPatientPastVisits(formData);
     submitpastVisit.subscribe(value => {
       console.log(value);
@@ -139,7 +141,12 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit {
     }, () => {
       console.log("recording started");
     });
-    const player = new JSMpeg.Player('ws://127.0.0.1:9999', {canvas: this.streamingcanvas.nativeElement, autoplay: true, loop: true});
+    const player = new JSMpeg.Player('ws://127.0.0.1:' + localStorage.getItem('wsport'), {
+      canvas: this.streamingcanvas.nativeElement,
+      autoplay: true,
+      loop: true
+    });
+    player.stop();
   }
 
   stopStreamRecording() {
@@ -151,7 +158,12 @@ export class FormDialogPastVisitComponent implements AfterViewInit, OnInit {
       console.log(error);
     }, () => {
     });
-    this.streamingcanvas.nativeElement = null;
+    const player = new JSMpeg.Player('ws://127.0.0.1:' + localStorage.getItem('wsport'), {
+      canvas: this.streamingcanvas.nativeElement,
+      autoplay: true,
+      loop: true
+    });
+    player.stop();
   }
 
   download() {

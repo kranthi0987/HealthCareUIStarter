@@ -26,7 +26,6 @@ import { PatientProfileComponent } from './patient-profile/patient-profile.compo
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DeleteDialogPastVisitComponent} from "./patient-profile/pastvisitdialog/delete/deletepastvisit.component";
 import {FormDialogPastVisitComponent} from "./patient-profile/pastvisitdialog/form-dialog/form-dialogpastvisit.component";
-import {MatVideoModule} from "mat-video";
 @NgModule({
   declarations: [
     AllpatientComponent,
@@ -58,8 +57,7 @@ import {MatVideoModule} from "mat-video";
     MatRadioModule,
     MatCheckboxModule,
     MaterialFileInputModule,
-    PatientRoutingModule,
-    MatVideoModule,
+    PatientRoutingModule
   ],
 })
 export class PatientModule {}

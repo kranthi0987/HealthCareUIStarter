@@ -74,29 +74,40 @@
 <!--        </div>-->
 <!--      </div>-->
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4" *ngIf="data.action!=='view'">
+
             <mat-form-field class="example-full-width mb-6" appearance="outline">
               <mat-label>session logs</mat-label>
               <!--          <span *ngIf='patient.session_log==null'> <video #video src="ws://127.0.0.1:9999"></video></span>-->
               <!--          <span *ngIf='patient.session_log!=null'> <video #video [src]='patient.session_log'></video></span>-->
-              <canvas #video id="canvas"  ></canvas>
+
+              <canvas #video id="canvas" width="1920" height="1080" style="display: block; width: 100%;"></canvas>
               <input matInput formControlName="streamfilepath" disabled>
             </mat-form-field>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4" *ngIf="data.action==='view'">
+
+          <mat-form-field class="example-full-width mb-6" appearance="outline">
+            <mat-label>session logs</mat-label>
+            <video controls preload=auto autoplay [src]="patient.session_log" style="display: block; width: 100%;"></video>
+            <input matInput formControlName="streamfilepath" disabled>
+          </mat-form-field>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4" *ngIf="data.action!=='view'">
           <div class="align-center">
               <button mat-stroked-button color="primary" (click)="startStreamRecording()"> Record </button>
               <button mat-stroked-button color="warn" (click)="stopStreamRecording()"> Stop</button>
               <button mat-stroked-button color="accent" (click)="download()"> Download</button>
           </div>
         </div>
+
       </div>
 
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4" *ngIf="data.action!=='view'">
           <div class="align-center">
             <button mat-stroked-button color="primary" (click)="submit()"> Submit</button>
           </div>

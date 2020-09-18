@@ -11,4 +11,8 @@ export class UserProfileModel {
   email: string;
   specialist: string;
   last_login_date_time: string;
+  wsport: string;
+  camera_ip_address: string;
+  server_ip_address: string;
+  pic: string;
 }

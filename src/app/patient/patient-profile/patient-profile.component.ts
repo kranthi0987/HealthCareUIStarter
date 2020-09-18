@@ -18,7 +18,7 @@ import {FormDialogPastVisitComponent} from "./pastvisitdialog/form-dialog/form-d
 export class PatientProfileComponent implements OnInit {
 
   patient: any;
-  displayedColumns: string[] = ['consultedon', 'treatment', 'logdocument', 'sessionfile', 'delete', 'details'];
+  displayedColumns: string[] = ['consultedon', 'treatment', 'sessionfile', 'delete', 'details'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

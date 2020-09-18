@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HealthCareUIStarter.iml" filepath="$PROJECT_DIR$/.idea/HealthCareUIStarter.iml" />
+      <module fileurl="file://$USER_HOME$/WebstormProjects/streamingnode/.idea/streamingnode.iml" filepath="$USER_HOME$/WebstormProjects/streamingnode/.idea/streamingnode.iml" />
     </modules>
   </component>
 </project>

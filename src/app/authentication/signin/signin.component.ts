@@ -38,7 +38,10 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   loginApiCall(loginRequest: { password: string; email: string }) {
-    const loginObservable = this.authService.postLogin(loginRequest);
+    const formData: any = new FormData();
+    formData.append("password", loginRequest.password);
+    formData.append("email", loginRequest.email);
+    const loginObservable = this.authService.postLogin(formData);
     loginObservable.subscribe(
       (loginResponse: LoginResponse) => {
         this.loginReponse = loginResponse;

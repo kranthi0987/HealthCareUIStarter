@@ -62,12 +62,14 @@ export class PatientService {
   deletePatient(id: number): void {
     console.log(id);
   }
+
   // delete patient with id
-  public deletePatientbyid(id: number): Observable<any>{
+  public deletePatientbyid(id: number): Observable<any> {
     return this.httpClient.delete('api/patient/' + id, this.httpAuthFormData)
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
         catchError(this.handleError));
   }
+
   // Add patient form data from add patient
   public addPatient(formData): Observable<any> {
     return this.httpClient.post('/api/patient/list/', formData, this.httpAuthFormData)
@@ -84,10 +86,14 @@ export class PatientService {
 
   // start streaming for patient
   public startStreaming(): Observable<any> {
-    return this.httpClient.get('/stream/startstreaming')
+    const formData: any = new FormData();
+    formData.append("ipaddress", localStorage.getItem('camera_ip_address'));
+    formData.append("wsport", localStorage.getItem('wsport'));
+    return this.httpClient.post('/stream/startstreaming', formData)
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
         catchError(this.handleError));
   }
+
   // stop streaming for patient
   public stopStreaming(): Observable<any> {
     return this.httpClient.get('/stream/stopstreaming')
@@ -97,7 +103,7 @@ export class PatientService {
 
   // Download streaming for patient
   public downloadStreaming(): Observable<Blob> {
-    return this.httpClient.get('/stream/download', { responseType: 'blob' })
+    return this.httpClient.get('/stream/download', {responseType: 'blob'})
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
         catchError(this.handleError));
   }
@@ -113,6 +119,13 @@ export class PatientService {
   public addPatientPastVisits(formData): Observable<any> {
     console.log(formData);
     return this.httpClient.post('/api/patientlog/add/', formData, this.httpAuthFormData)
+      .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
+        catchError(this.handleError));
+  }
+
+  // Delete past visit data
+  public deletePatientPastVisits(patientId): Observable<any> {
+    return this.httpClient.delete('/api/patientlog/' + patientId, this.httpAuthFormData)
       .pipe(shareReplay({bufferSize: 1, refCount: true}), retry(1),
         catchError(this.handleError));
   }
